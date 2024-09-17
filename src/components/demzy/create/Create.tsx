@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { LuEye } from "react-icons/lu";
 
 const Create = () => {
@@ -9,6 +9,7 @@ const Create = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
@@ -24,8 +25,8 @@ const Create = () => {
     }
 
     setErrorMessage("");
-    console.log("Form submitted successfully");
-    alert("Account Created successfully");
+    // Redirect to the next form with email and password
+    navigate("/info", { state: { email, password } });
   };
 
   return (
