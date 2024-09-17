@@ -2,8 +2,7 @@ import SidePanel from "@/components/Login/SidePanel";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function ForgotPassword() {
-
+function ConfirmPassword() {
   return (
     <div className="flex h-screen">
       <Form/>
@@ -12,20 +11,20 @@ function ForgotPassword() {
   );
 }
 
-export default ForgotPassword;
+export default ConfirmPassword;
 
 
 
 function Form() {
-  const navigate = useNavigate();
-    const [email, setEmail] = useState('');
+    const navigate = useNavigate()
+    const [password, setPassword] = useState('');
+    const [confitmPassword, setConfirmPassword] = useState('');
 
-  const isDisabled =  !email;
+  const isDisabled =  !password;
 
   const handleLogin = (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    navigate("/confirm-password")
-
+    navigate("/auth/success")
   };
 
   return (
@@ -36,21 +35,34 @@ function Form() {
         alt="illustration"
         className="mx-auto md:mb-10 mb-8"
       />
-       <h2 className="text-2xl font-bold mb-2">Forgot Password</h2>
+       <h2 className="text-2xl font-bold mb-2">New Password</h2>
       <p className="md:mb-7 mb-5 font-normal text-base text-[#797979]">
-      Enter your email for the verification proccess,we will send 4 digits code to your email.
+      Set the new password for your account so you can login and access all features
       </p>
       <form onSubmit={handleLogin}>
       <div className="md:mb-5 mb-3">
           <label className="block text-base font-normal md:mb-3 mb-2">
-            Email
+            Enter new Password
           </label>
           <input
             required
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Email@emailer.com"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="*********"
+            className="w-full text-base font-normal p-3 border border-[#0D2B78] bg-[#E4E6E8] rounded-xl outline-2 outline-[#0D2B78]"
+          />
+        </div>
+        <div className="md:mb-5 mb-3">
+          <label className="block text-base font-normal md:mb-3 mb-2">
+            Confirm Password
+          </label>
+          <input
+            required
+            type="password"
+            value={confitmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            placeholder="*********"
             className="w-full text-base font-normal p-3 border border-[#0D2B78] bg-[#E4E6E8] rounded-xl outline-2 outline-[#0D2B78]"
           />
         </div>
@@ -63,7 +75,7 @@ function Form() {
           }`}
           disabled={isDisabled}
         >
-        Continue
+        Update Password
         </button>
       </form>
     </div>
