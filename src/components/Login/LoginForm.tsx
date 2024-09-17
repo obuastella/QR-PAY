@@ -8,10 +8,11 @@ const LoginForm = () => {
 
   const handleLogin = (e: { preventDefault: () => void }) => {
     e.preventDefault();
+    console.log("email: " + email + "\n" + "password: " + password);
   };
 
   return (
-    <div className="flex flex-col justify-center w-full md:w-1/2 p-10">
+    <div className="flex flex-col justify-center w-full md:w-1/2 h-screen p-10">
       <h2 className="text-2xl font-bold mb-2">Welcome back,</h2>
       <p className="md:mb-7 mb-5 font-normal text-base">
         Enter your details to login to your account
@@ -19,11 +20,11 @@ const LoginForm = () => {
       <img
         src="/image/ZionIllustration.png"
         alt="illustration"
-        className="mx-auto md:mb-10 mb-8"
+        className="mx-auto mb-6"
       />
       <form onSubmit={handleLogin}>
-        <div className="md:mb-5 mb-3">
-          <label className="block text-base font-normal md:mb-3 mb-2">
+        <div className="mb-3">
+          <label className="block text-base font-normal mb-1">
             Email
           </label>
           <input
@@ -35,8 +36,8 @@ const LoginForm = () => {
             className="w-full text-base font-normal p-3 border border-[#0D2B78] bg-[#E4E6E8] rounded-xl outline-2 outline-[#0D2B78]"
           />
         </div>
-        <div className="md:mb-5 mb-3">
-          <label className="block text-base font-normal md:mb-3 mb-2">
+        <div className="mb-3">
+          <label className="block text-base font-normal mb-1">
             Password
           </label>
           <input
@@ -48,7 +49,7 @@ const LoginForm = () => {
             className="w-full text-base font-normal p-3 border border-[#0D2B78] bg-[#E4E6E8] rounded-xl outline-2 outline-[#0D2B78]"
           />
         </div>
-        <div className="mb-6 md:mb-24 text-right">
+        <div className="mb-6 md:mb-12 text-right">
           <a href="#" className="text-base font-semibold text-[#0D2B78]">
             Forgot Password
           </a>
