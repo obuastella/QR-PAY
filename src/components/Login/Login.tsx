@@ -3,7 +3,7 @@ import SidePanel from './SidePanel';
 
 function Login() {
   return (
-    <div className="flex h-screen">
+    <div className="flex min-h-full">
       <LoginForm />
       <SidePanel />
     </div>
