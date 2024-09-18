@@ -48,7 +48,7 @@ const PersonalInfoForm = () => {
 
   return (
     <>
-      <Toaster richColors position="top-right" />
+      <Toaster richColors position="top-center" />
       <div className="flex justify-center items-center min-h-screen p-4 sm:p-8 lg:p-10">
         <div className="w-full">
           <div className="flex items-center mb-6 sm:mb-8">

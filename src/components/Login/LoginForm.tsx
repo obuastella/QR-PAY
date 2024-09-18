@@ -36,9 +36,12 @@ const LoginForm = () => {
     }
   };
 
+  const popUp = () => {
+    toast.warning("Currently working on this feature! 😔");
+  };
   return (
     <>
-      <Toaster richColors position="top-right" />
+      <Toaster richColors position="top-center" />
       <div className="flex flex-col justify-center w-full md:w-1/2 h-screen p-10">
         <h2 className="text-2xl font-bold mb-2">Welcome back,</h2>
         <p className="md:mb-7 mb-5 font-normal text-base">
@@ -74,7 +77,8 @@ const LoginForm = () => {
           </div>
           <div className="mb-6 md:mb-12 text-right">
             <Link
-              to="/forgot-password"
+              to="#"
+              onClick={popUp}
               className="text-base font-semibold text-[#0D2B78]"
             >
               Forgot Password

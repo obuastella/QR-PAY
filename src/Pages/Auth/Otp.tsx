@@ -55,7 +55,7 @@ export default function Otp() {
   };
   return (
     <>
-      <Toaster richColors position="top-right" />
+      <Toaster richColors position="top-center" />
       <div className="flex flex-col justify-between min-h-screen p-4 sm:p-8 lg:p-10">
         <div>
           <Info />
