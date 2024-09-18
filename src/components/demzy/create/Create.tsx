@@ -11,9 +11,10 @@ const Create = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
 
+    // Validate form inputs
     if (password.length < 8) {
       setErrorMessage("Password must be at least 8 characters long");
       return;
@@ -25,7 +26,6 @@ const Create = () => {
     }
 
     setErrorMessage("");
-    // Redirect to the next form with email and password
     navigate("/info", { state: { email, password } });
   };
 
