@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { LuEye } from "react-icons/lu";
 
 const Create = () => {
@@ -9,10 +9,12 @@ const Create = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate();
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
 
+    // Validate form inputs
     if (password.length < 8) {
       setErrorMessage("Password must be at least 8 characters long");
       return;
@@ -24,8 +26,7 @@ const Create = () => {
     }
 
     setErrorMessage("");
-    console.log("Form submitted successfully");
-    alert("Account Created successfully");
+    navigate("/info", { state: { email, password } });
   };
 
   return (
