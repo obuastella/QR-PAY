@@ -1,14 +1,39 @@
+import BASE_URL from '@/config/apiconfig';
+import axios from 'axios';
 import { useState } from 'react';
 import { FaRegUser } from 'react-icons/fa6';
+import { Link, useLocation } from 'react-router-dom';
 
 const PersonalInfoForm = () => {
+  const location = useLocation();
+  const data = location.state;
+// console.log(data);
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [dob, setDob] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
 
-  const handleSubmit = (e: { preventDefault: () => void }) => {
+  const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
+    const payload = {
+      email: data.email,
+      password: data.password,
+      firstName: firstName,
+      lastName: lastName,
+      phoneNumber: phoneNumber,
+      dateOfBirth: dob,
+    }
+    console.log(payload)
+    try {
+      const response = await axios.post(`${BASE_URL}/api/auth/register`, payload, {
+      });
+
+      console.log("Response", response.data.data);
+     
+     
+    } catch (error:any) {
+      console.log(error)
+    }
   };
 
   return (
@@ -102,12 +127,12 @@ const PersonalInfoForm = () => {
             </div>
 
             <div className="flex flex-col sm:flex-row justify-end gap-4">
-              <button
-                type="button"
-                className="bg-[#09111D] hover:bg-[#122138] text-white px-6 py-2 sm:px-8 sm:py-3 rounded-lg font-medium text-sm"
+              <Link
+              to="/"
+                className="flex justify-center itesm-center bg-[#09111D] hover:bg-[#122138] text-white px-6 py-2 sm:px-8 sm:py-3 rounded-lg font-medium text-sm"
               >
                 Back
-              </button>
+              </Link>
               <button
                 type="submit"
                 className="bg-[#0D2B78] hover:bg-[#203569] text-white px-6 py-2 sm:px-8 sm:py-3 rounded-lg font-medium text-sm"
