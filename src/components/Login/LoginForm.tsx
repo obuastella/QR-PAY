@@ -1,6 +1,7 @@
 import BASE_URL from "@/config/apiconfig";
 import axios from "axios";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Toaster, toast } from "sonner";
 
 const LoginForm = () => {
@@ -35,9 +36,12 @@ const LoginForm = () => {
     }
   };
 
+  const popUp = () => {
+    toast.warning("Currently working on this feature! 😔");
+  };
   return (
     <>
-      <Toaster richColors position="top-right" />
+      <Toaster richColors position="top-center" />
       <div className="flex flex-col justify-center w-full md:w-1/2 h-screen p-10">
         <h2 className="text-2xl font-bold mb-2">Welcome back,</h2>
         <p className="md:mb-7 mb-5 font-normal text-base">
@@ -72,9 +76,13 @@ const LoginForm = () => {
             />
           </div>
           <div className="mb-6 md:mb-12 text-right">
-            <a href="#" className="text-base font-semibold text-[#0D2B78]">
+            <Link
+              to="#"
+              onClick={popUp}
+              className="text-base font-semibold text-[#0D2B78]"
+            >
               Forgot Password
-            </a>
+            </Link>
           </div>
           <button
             type="submit"
@@ -91,9 +99,9 @@ const LoginForm = () => {
         <div className="mt-4 text-center">
           <p className="text-base font-medium">
             Don’t have an account?{" "}
-            <a href="#" className="text-[#0D2B78]">
+            <Link to="/" className="text-[#0D2B78]">
               Sign up
-            </a>
+            </Link>
           </p>
         </div>
       </div>

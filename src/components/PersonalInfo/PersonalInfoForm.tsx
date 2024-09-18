@@ -13,8 +13,6 @@ const PersonalInfoForm = () => {
   const [lastName, setLastName] = useState("");
   const [dob, setDob] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-  // const [email, setEmail] = useState("");
-  // setEmail(data.email);
   const userEmail = data?.email;
   const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
@@ -50,7 +48,7 @@ const PersonalInfoForm = () => {
 
   return (
     <>
-      <Toaster richColors position="top-right" />
+      <Toaster richColors position="top-center" />
       <div className="flex justify-center items-center min-h-screen p-4 sm:p-8 lg:p-10">
         <div className="w-full">
           <div className="flex items-center mb-6 sm:mb-8">
