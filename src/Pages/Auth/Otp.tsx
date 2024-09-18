@@ -35,7 +35,6 @@ export default function Otp() {
         );
         console.log("Response", response.data);
         if (response.data.message === "OTP verified") {
-          toast.error("OTP verified!");
           localStorage.setItem("token", response.data.token);
           toast.success("User created successfully!");
           setTimeout(() => {
@@ -62,10 +61,10 @@ export default function Otp() {
           <Info />
           <div className="px-4 sm:px-8 lg:px-16">
             <p className="text-sm sm:text-xl text-[#333333] font-normal mb-5">
-              Please verify your phone number.
+              Please verify your Email.
             </p>
             <p className="text-xs sm:text-base text-[#797979] mb-5">
-              We sent a verification code via SMS to (555) 555-1212. Please
+              We sent a verification code via email {data?.userEmail}. Please
               enter the code below within the next 10 min.
             </p>
             <Pin handleOtpChange={handleOtpChange} />

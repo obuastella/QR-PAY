@@ -13,8 +13,6 @@ const PersonalInfoForm = () => {
   const [lastName, setLastName] = useState("");
   const [dob, setDob] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-  // const [email, setEmail] = useState("");
-  // setEmail(data.email);
   const userEmail = data?.email;
   const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
