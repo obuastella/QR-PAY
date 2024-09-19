@@ -10,7 +10,7 @@ const Calendar = () => {
     <DatePicker
       selected={selectedDate}
       onChange={(date) => setSelectedDate(date)}
-      className="p-2 border border-[#F8F8F880] bg-[#040428] rounded-lg cursor-pointer placeholder:text-center"
+      className="p-2 border border-[#F8F8F880] bg-[#040428] rounded-lg cursor-pointer placeholder:text-center w-auto"
       placeholderText="Select Date"
     />
   );
