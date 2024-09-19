@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import BASE_URL from "@/config/apiconfig";
 import axios from "axios";
 import { useState } from "react";

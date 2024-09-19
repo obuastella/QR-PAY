@@ -14,7 +14,7 @@ const SearchBar = () => {
   };
 
   return (
-    <div className="flex items-center border border-[#F8F8F880] bg-[#040428] rounded-lg w-80 p-2">
+    <div className="flex items-center border border-[#F8F8F880] bg-[#040428] rounded-lg xl:w-80 w-full p-2">
       <BiSearch className="w-5 h-5 text-gray-400" />
       <input
         type="text"

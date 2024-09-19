@@ -15,6 +15,7 @@ import Settings from './components/Dashboard/Settings';
 import SidebarLayout from './components/Dashboard/SidebarLayout';
 import ConfirmPassword from "./Pages/Auth/ConfirmPassword";
 import Success from "./Pages/Auth/Success";
+import Profile from './components/Dashboard/Profile';
 const App = () => {
   return (
     <>
@@ -35,6 +36,7 @@ const App = () => {
           <Route path="/notifications" element={<Notifications />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/support" element={<Support />} />
+          <Route path="/profile" element={<Profile />} />
         </Route>
       </Routes>
     </>
