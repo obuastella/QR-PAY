@@ -2,10 +2,11 @@
 import BASE_URL from "@/config/apiconfig";
 import axios from "axios";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Toaster, toast } from "sonner";
 
 const LoginForm = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -26,7 +27,7 @@ const LoginForm = () => {
       toast.success("Logged in successfully!");
       localStorage.setItem("token", token);
 
-      // navigate("/dashboard"); -- this page does not exist yet
+      navigate("/home");
     } catch (error: any) {
       console.log(error);
       if (error.response.data.message === "User already exists") {
@@ -42,7 +43,7 @@ const LoginForm = () => {
   };
   return (
     <>
-      <Toaster richColors position="top-center" />
+      <Toaster richColors position="top-right" />
       <div className="flex flex-col justify-center w-full md:w-1/2 h-screen p-10">
         <h2 className="text-2xl font-bold mb-2">Welcome back,</h2>
         <p className="md:mb-7 mb-5 font-normal text-base">
