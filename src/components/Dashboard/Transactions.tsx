@@ -1,4 +1,3 @@
-// Define recents and transactions data outside the component
 const recents = [
   { name: "Tobi Bakare", imageUrl: "https://i.pravatar.cc/150?img=1" },
   { name: "Tobi Bakare", imageUrl: "https://i.pravatar.cc/150?img=2" },
@@ -7,10 +6,38 @@ const recents = [
   { name: "Tobi Bakare", imageUrl: "https://i.pravatar.cc/150?img=5" },
   { name: "Tobi Bakare", imageUrl: "https://i.pravatar.cc/150?img=6" },
   { name: "Tobi Bakare", imageUrl: "https://i.pravatar.cc/150?img=7" },
-  { name: "Tobi Bakare", imageUrl: "https://i.pravatar.cc/150?img=8" },
+  { name: "Tobi Bakare", imageUrl: "https://i.pravatar.cc/150?img=10" },
 ];
 
 const transactions = [
+  {
+    name: "Simeon Adeniji",
+    type: "Inward Transfer",
+    amount: 200000,
+    date: "05 Apr 2024",
+    positive: true,
+  },
+  {
+    name: "Precious Njoku",
+    type: "QR Transaction",
+    amount: 200000,
+    date: "05 Apr 2024",
+    positive: false,
+  },
+  {
+    name: "Simeon Adeniji",
+    type: "Inward Transfer",
+    amount: 200000,
+    date: "05 Apr 2024",
+    positive: true,
+  },
+  {
+    name: "Precious Njoku",
+    type: "Outward Transfer",
+    amount: 200000,
+    date: "05 Apr 2024",
+    positive: false,
+  },
   {
     name: "Simeon Adeniji",
     type: "Inward Transfer",
@@ -43,18 +70,18 @@ const transactions = [
 
 const Transactions = () => {
   return (
-    <div className="p-2 md:p-6 bg-white rounded-[24px] h-auto">
+    <div className=" bg-white rounded-[24px] h-auto mb-12 ">
       {/* Recents Section */}
       <div className="mb-6">
         <h2 className="text-lg font-bold mb-4">Recents</h2>
-        <div className="flex space-x-4 overflow-x-auto no-scrollbar">
+        <div className="flex flex-wrap">
           {recents.map((recent, index) => (
             <div
               key={index}
-              className="flex-shrink-0 flex flex-col items-center w-24"
+              className="flex-shrink-0 flex flex-col items-center w-22 md:w-24"
             >
               <img
-                className="w-12 h-12 md:w-16 md:h-16 rounded-full"
+                className="w-10 h-10 md:w-10 md:h-10 rounded-full"
                 src={recent.imageUrl}
                 alt={recent.name}
               />
