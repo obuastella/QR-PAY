@@ -1,9 +1,9 @@
 import { FaUserFriends } from 'react-icons/fa';
-import { BsQrCodeScan } from 'react-icons/bs';
 import SidebarLink from './SidebarLink';
 import { AiFillHome } from 'react-icons/ai';
 import { RiExchangeBoxFill } from 'react-icons/ri';
 import { ImUser } from 'react-icons/im';
+import QrCodeScan from './QrCodeScan';
 
 function MobileSidebar() {
   return (
@@ -24,13 +24,7 @@ function MobileSidebar() {
         activeClassName="text-[#052283] bg-none"
       />
 
-      <button className="">
-        <div className="w-16 h-16 bg-gradient-to-t from-[#020202] to-[#0E1D33] rounded-full flex justify-center items-center shadow-lg">
-          <span className="text-white text-3xl">
-            <BsQrCodeScan />
-          </span>
-        </div>
-      </button>
+      <QrCodeScan />
 
       <SidebarLink
         to="/beneficiaries"

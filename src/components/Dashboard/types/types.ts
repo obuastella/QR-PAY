@@ -13,3 +13,8 @@ export interface FilterOption {
   label: string;
 }
 
+export interface WeeklyActivityDataPoint {
+  day: string;
+  sent: number;
+  received: number;
+}
