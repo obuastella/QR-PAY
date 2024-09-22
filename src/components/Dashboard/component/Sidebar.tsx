@@ -1,17 +1,17 @@
-import SidebarLink from './SidebarLink';
-import { BiSupport } from 'react-icons/bi';
-import { FaUserFriends } from 'react-icons/fa';
-import { IoMdNotificationsOutline } from 'react-icons/io';
-import { CiLogout } from 'react-icons/ci';
-import { FiSettings } from 'react-icons/fi';
-import MobileSidebar from './MobileSidebar';
-import { AiFillHome } from 'react-icons/ai';
-import { RiExchangeBoxFill } from 'react-icons/ri';
+import SidebarLink from "./SidebarLink";
+import { BiSupport } from "react-icons/bi";
+import { FaUserFriends } from "react-icons/fa";
+import { IoMdNotificationsOutline } from "react-icons/io";
+import { CiLogout } from "react-icons/ci";
+import { FiSettings } from "react-icons/fi";
+import MobileSidebar from "./MobileSidebar";
+import { AiFillHome } from "react-icons/ai";
+import { RiExchangeBoxFill } from "react-icons/ri";
 
 const Sidebar = () => {
   return (
     <>
-      <aside className="w-[232px] h-screen xl:flex flex-col text-white bg-[#040428] hidden">
+      <aside className="w-[232px] min-h-screen xl:flex flex-col text-white bg-[#040428] hidden">
         <div className="flex items-center justify-center gap-4 py-9">
           <img src="image/zionLogo.png" alt="Logo" className="w-10 h-10" />
           <span className="text-xl font-bold">QR Pay</span>
