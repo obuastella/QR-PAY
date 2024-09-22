@@ -30,11 +30,11 @@ export const RenderHeaderContent = () => {
               <User />
             </div>
           </div>
-          <div className="flex justify-between items-center gap-4 md:hidden">
+          <div className="flex justify-between items-center gap-4 md:hidden w-full">
             <User />
             <div className="flex items-center gap-4">
-              <BiSupport className="w-10 h-10 rounded-full bg-white p-2 text-[#040428]" />
-              <IoMdNotificationsOutline className="w-10 h-10 rounded-full bg-white p-2 text-[#040428]" />
+              <BiSupport className="sm:w-10 sm:h-10 w-8 h-8 rounded-full bg-white  sm:p-2 p-1 text-[#040428]" />
+              <IoMdNotificationsOutline className="sm:w-10 sm:h-10 w-8 h-8 rounded-full bg-white sm:p-2 p-1 text-[#040428]" />
             </div>
           </div>
         </>

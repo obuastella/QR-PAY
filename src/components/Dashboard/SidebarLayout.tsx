@@ -3,9 +3,6 @@ import Sidebar from './component/Sidebar';
 import { RenderHeaderContent } from './component/RenderHeaderContent';
 
 const SidebarLayout = () => {
-
-  <RenderHeaderContent />
-
   return (
     <div className="flex flex-col h-screen">
       <div className="flex flex-1">
@@ -14,7 +11,7 @@ const SidebarLayout = () => {
           <header className="text-white xl:py-7 py-5 px-4 xl:px-6">
             {RenderHeaderContent()}
           </header>
-          <div className="flex-1 bg-white p-6 rounded-[24px]">
+          <div className="flex-1 bg-white rounded-[24px] overflow-y-auto pb-20 xl:pb-0">
             <Outlet />
           </div>
         </main>
