@@ -5,7 +5,7 @@ import BankList from './BankList';
 import { Bank, SendFundsModalProps } from '@/components/Dashboard/types/types';
 import axios from 'axios';
 import { IoMdCheckmarkCircleOutline } from 'react-icons/io';
-import { API_URL } from '@/components/Dashboard/types/Services/API';
+import { API_URL } from '@/components/Dashboard/types/Services/API';  
 
 const SendFundsModal: React.FC<SendFundsModalProps> = ({ isOpen, onClose }) => {
   const [banks, setBanks] = useState<Bank[]>([]);
