@@ -3,23 +3,23 @@ import { Link } from "react-router-dom";
 const Landing = () => {
   return (
     <>
-      <main className="w-full min-h-full flex">
+      <main className="w-full min-h-full flex flex-col sm:flex-row">
         {/* Left Section */}
-        <section className="bg-[#040428] w-1/2 h-screen flex justify-center items-center">
+        <section className="hidden sm:flex bg-[#040428] w-1/2 h-screen justify-center items-center">
           <img src="/qrpay.png" alt="" />
         </section>
 
         {/* Right Section */}
-        <section className="w-1/2 flex flex-col items-center justify-center">
+        <section className="w-full sm:w-1/2 flex flex-col items-center justify-center mt-[100px] sm:mt-0">
           <div className="flex items-center gap-4">
             <img src="/qrpay.png" alt="" />
             <h2 className="text-[1.75rem] font-bold">QR Pay</h2>
           </div>
           <p className="max-w-[22.75rem] text-[1.25rem] font-medium text-center">
-            Quickest way to make send and receive money, Get Involved!!
+            Quickest way to send and receive money. Get Involved!!
           </p>
 
-          <div className="absolute bottom-0 mb-5 w-1/2 px-4 flex flex-col gap-4">
+          <div className="absolute bottom-0 mb-5 w-11/12 sm:w-1/2 px-4 flex flex-col gap-4">
             <Link
               to="/create"
               className="text-white font-semibold w-full py-4 flex items-center justify-center rounded-[10px]"
