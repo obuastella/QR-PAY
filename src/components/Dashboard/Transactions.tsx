@@ -1,4 +1,4 @@
-const recents = [
+export const recents = [
   { name: "Tobi Bakare", imageUrl: "https://i.pravatar.cc/150?img=1" },
   { name: "Tobi Bakare", imageUrl: "https://i.pravatar.cc/150?img=2" },
   { name: "Tobi Bakare", imageUrl: "https://i.pravatar.cc/150?img=3" },
@@ -9,7 +9,7 @@ const recents = [
   { name: "Tobi Bakare", imageUrl: "https://i.pravatar.cc/150?img=10" },
 ];
 
-const transactions = [
+export const transactions = [
   {
     name: "Simeon Adeniji",
     type: "Inward Transfer",
@@ -70,7 +70,7 @@ const transactions = [
 
 const Transactions = () => {
   return (
-    <div className=" bg-white rounded-[24px] h-auto mb-12 ">
+    <div className=" bg-white rounded-[24px] h-auto mb-12 p-6">
       {/* Recents Section */}
       <div className="mb-6">
         <h2 className="text-lg font-bold mb-4">Recents</h2>
@@ -92,7 +92,7 @@ const Transactions = () => {
       </div>
 
       {/* Transactions Section */}
-      <div className="transactions">
+      <div className="transactions over">
         <h2 className="text-lg font-semibold mb-4">Recent Transactions</h2>
         <div className="bg-gray-100 rounded-lg shadow p-4">
           {transactions.map((transaction, index) => (

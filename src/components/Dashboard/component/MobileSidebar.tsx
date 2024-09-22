@@ -7,7 +7,7 @@ import QrCodeScan from './QrCodeScan';
 
 function MobileSidebar() {
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-white shadow-[0px_-4px_10px_rgba(95,92,92,0.25)] flex xl:hidden justify-between items-center h-[80px] z-50 rounded-tl-[40px] rounded-tr-[40px] px-5">
+    <div className="fixed bottom-0 left-0 right-0 bg-white shadow-[0px_-4px_10px_rgba(95,92,92,0.25)] flex xl:hidden justify-between items-center h-[80px] z-50 rounded-tl-[30px] rounded-tr-[30px]">
       <SidebarLink
         to="/home"
         icon={<AiFillHome className="w-6 h-6" />}

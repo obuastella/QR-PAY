@@ -24,10 +24,10 @@ export const BalanceSection = () => {
       <div className="flex flex-col justify-center items-center">
         <h2 className="md:text-lg sm:text-base text-sm font-semibold text-[#040428] mb-2">Total Balance</h2>
         <div className="text-4xl font-bold text-[#040428] flex items-center gap-4 z-10">
-          <span className='font-medium lg:text-3xl md:text-2xl text-2xl whitespace-nowrap'>₦ {showBalance ? '300,000,000,000' : '*****'}</span>
+          <span className='font-medium border-red-500  text-2xl whitespace-nowrap'>₦ {showBalance ? '30,000,000,000' : '*****'}</span>
           <button
             onClick={toggleBalance}
-            className="text-[#040428] hover:text-gray-200 transition-colors duration-200"
+            className="text-[#040428] cursor-pointer transition-colors duration-200"
             aria-label={showBalance ? 'Hide balance' : 'Show balance'}
           >
             {showBalance ? <EyeOff size={24} /> : <Eye size={24} />}
