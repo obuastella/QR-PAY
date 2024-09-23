@@ -1,7 +1,30 @@
-import { useState } from 'react';
-import { Eye, EyeOff } from 'lucide-react';
+import { useEffect, useState } from "react";
+import { Eye, EyeOff } from "lucide-react";
+import KORA_URL from "@/config/kora";
+import axios from "axios";
 
 export const BalanceSection = () => {
+  const secretKey = import.meta.env.VITE_KORA_SECRET_KEY;
+  const [balance, setBalance] = useState();
+  useEffect(() => {
+    const getBalance = async () => {
+      try {
+        const response = await axios.get(
+          `${KORA_URL}/merchant/api/v1/balances`,
+          {
+            headers: {
+              Authorization: `Bearer ${secretKey}`,
+            },
+          }
+        );
+        // console.log(response.data.data);
+        setBalance(response.data.data.NGN.available_balance);
+      } catch (e: any) {
+        console.log(e);
+      }
+    };
+    getBalance();
+  }, [secretKey]);
   const [showBalance, setShowBalance] = useState(false);
 
   const toggleBalance = () => setShowBalance(!showBalance);
@@ -18,17 +41,21 @@ export const BalanceSection = () => {
 
       {/* mountain */}
       <div className="absolute bottom-[-50px] right-[-2px] w-auto">
-        <img src="image/Linebackground.svg" alt="" className='w-[350px]'/>
+        <img src="image/Linebackground.svg" alt="" className="w-[350px]" />
       </div>
 
       <div className="flex flex-col justify-center items-center">
-        <h2 className="md:text-lg sm:text-base text-sm font-semibold text-[#040428] mb-2">Total Balance</h2>
+        <h2 className="md:text-lg sm:text-base text-sm font-semibold text-[#040428] mb-2">
+          Total Balance
+        </h2>
         <div className="text-4xl font-bold text-[#040428] flex items-center gap-4 z-10">
-          <span className='font-medium border-red-500  text-2xl whitespace-nowrap'>₦ {showBalance ? '30,000,000,000' : '*****'}</span>
+          <span className="font-medium border-red-500  text-2xl whitespace-nowrap">
+            ₦ {showBalance ? balance : "*****"}
+          </span>
           <button
             onClick={toggleBalance}
             className="text-[#040428] cursor-pointer transition-colors duration-200"
-            aria-label={showBalance ? 'Hide balance' : 'Show balance'}
+            aria-label={showBalance ? "Hide balance" : "Show balance"}
           >
             {showBalance ? <EyeOff size={24} /> : <Eye size={24} />}
           </button>
