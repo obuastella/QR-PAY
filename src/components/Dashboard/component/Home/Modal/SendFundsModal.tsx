@@ -19,7 +19,7 @@ const SendFundsModal: React.FC<SendFundsModalProps> = ({ isOpen, onClose }) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [showAccountName, setShowAccountName] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>('');
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+   
   const [, setFormCompleted] = useState<boolean>(false);
   const [amount, setAmount] = useState<string>('');
   const [narration, setNarration] = useState<string>('');
@@ -278,7 +278,7 @@ const SendFundsModal: React.FC<SendFundsModalProps> = ({ isOpen, onClose }) => {
               amount={amount}
               narration={narration}
               setPin={setPin}
-              onPinEnter={function (pin: string): void {
+              onPinEnter={function (_pin: string): void {
                 throw new Error('Function not implemented.');
               }}
             />
