@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { Dispatch, ReactNode, SetStateAction } from 'react';
 
 export interface SidebarLinkProps {
   to: string;
@@ -39,4 +39,32 @@ export interface ReceiveFundsModalProps {
   onClose: () => void;
   accountName: string;
   accountNumber: string;
+}
+
+// type OnSendFunds = (amount: string, narration: string) => void;
+
+export interface SendFunds2Props {
+  bankName: string;
+  accountNumber: string;
+  accountName: string;
+  // onSendFunds: OnSendFunds;
+}
+
+export interface SendFunds3Props {
+  bankName: string;
+  accountNumber: string;
+  accountName: string;
+  amount: string;
+  narration: string;
+  setPin: Dispatch<SetStateAction<string[]>>;
+}
+ export interface ExtendedSendFunds2Props extends SendFunds2Props {
+  onDataChange: (amount: string, narration: string) => void;
+}
+
+export interface receiptProps {
+  onClose: () => void;
+  amount: string;
+  accountName: string;
+  bankName: string;
 }
