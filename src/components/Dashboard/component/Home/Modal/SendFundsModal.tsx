@@ -173,7 +173,7 @@ const SendFundsModal: React.FC<SendFundsModalProps> = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-30 flex items-center justify-center z-[10000]">
+    <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-[10000]">
       <div className="bg-white sm:rounded-[20px] rounded-none shadow-lg sm:w-auto sm:h-auto h-full w-full p-6 relative justify-center flex flex-col">
         <button
           onClick={handleClose}

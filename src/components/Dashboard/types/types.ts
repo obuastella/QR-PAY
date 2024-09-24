@@ -68,3 +68,7 @@ export interface receiptProps {
   accountName: string;
   bankName: string;
 }
+
+export interface CameraToggleProps {
+  isModalOpen: boolean;
+}
