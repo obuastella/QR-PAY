@@ -13,9 +13,10 @@ import Support from './components/Dashboard/Support';
 import Home from './components/Dashboard/Home';
 import Settings from './components/Dashboard/Settings';
 import SidebarLayout from './components/Dashboard/SidebarLayout';
-import ConfirmPassword from "./Pages/Auth/ConfirmPassword";
-import Success from "./Pages/Auth/Success";
+import ConfirmPassword from './Pages/Auth/ConfirmPassword';
+import Success from './Pages/Auth/Success';
 import Profile from './components/Dashboard/Profile';
+// import CameraToggle from './components/Dashboard/component/objects/CameraToggle';
 const App = () => {
   return (
     <>
@@ -37,6 +38,7 @@ const App = () => {
           <Route path="/settings" element={<Settings />} />
           <Route path="/support" element={<Support />} />
           <Route path="/profile" element={<Profile />} />
+          {/* <Route path="/camera" element={<CameraToggle />} /> */}
         </Route>
       </Routes>
     </>
