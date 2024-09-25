@@ -2,10 +2,9 @@ import axios from "axios";
 import { useState } from "react";
 
 const DisburseTransaction = () => {
-  // State to store form input values
   const [formData, setFormData] = useState({
     amount: "",
-    currency: "NGN", // Default to NGN (can be changed based on requirement)
+    currency: "NGN",
     narration: "",
     bank: "",
     account: "",
@@ -13,7 +12,6 @@ const DisburseTransaction = () => {
     email: "",
   });
 
-  // Function to handle form input changes
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData({
@@ -22,25 +20,21 @@ const DisburseTransaction = () => {
     });
   };
 
-  // Function to handle disburse transaction
   const handleDisburse = async () => {
-    // Generate a unique reference using the current timestamp
     const uniqueReference = `txn-${Date.now()}`;
 
-    // Endpoint URL
     const url = "https://api.korapay.com/merchant/api/v1/transactions/disburse";
 
-    // Form Data to be sent
     const data = {
-      reference: uniqueReference, // Unique reference for each transaction
+      reference: uniqueReference,
       destination: {
         type: "bank_account",
         amount: formData.amount,
         currency: formData.currency,
         narration: formData.narration,
         bank_account: {
-          bank: formData.bank, // Bank code (e.g., "033" for UBA)
-          account: formData.account, // Bank account number
+          bank: formData.bank,
+          account: formData.account,
         },
         customer: {
           name: formData.name,
@@ -49,7 +43,6 @@ const DisburseTransaction = () => {
       },
     };
 
-    // Request headers with Authorization key
     const config = {
       headers: {
         Authorization:
@@ -59,18 +52,16 @@ const DisburseTransaction = () => {
     };
 
     try {
-      // Making the POST request
       const response = await axios.post(url, data, config);
-      console.log("Response:", response.data); // Handle success
+      console.log("Response:", response.data);
+      console.log(response.data.bank_code);
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        // Type narrowing for axios errors
         console.error(
           "Error:",
           error.response ? error.response.data : error.message
         );
       } else {
-        // Handle non-axios errors
         console.error("Unexpected Error:", error);
       }
     }
@@ -79,7 +70,6 @@ const DisburseTransaction = () => {
   return (
     <div className="flex justify-center items-center h-screen flex-col">
       <h1 className="text-2xl font-bold">Disburse Transaction</h1>
-      {/* Form for User Input */}
       <form className="flex flex-col gap-4 mt-6 w-1/2">
         <input
           type="text"
