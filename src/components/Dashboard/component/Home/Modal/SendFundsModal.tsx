@@ -112,6 +112,8 @@ const SendFundsModal: React.FC<SendFundsModalProps> = ({ isOpen, onClose }) => {
     if (postData.bank === "033" && postData.account === "0000000000") {
       setStep(2);
       setAccountName("Test Account");
+
+      return;
     }
 
     try {
