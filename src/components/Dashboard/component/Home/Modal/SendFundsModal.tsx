@@ -309,13 +309,13 @@ const SendFundsModal: React.FC<SendFundsModalProps> = ({ isOpen, onClose }) => {
             />
             <div className="mt-4 flex items-center gap-4">
               <button
-                className="w-1/2 bg-gray-500 hover:bg-gray-400 text-white py-3 rounded-lg font-semibold mr-2"
+                className="w-1/2 bg-black hover:bg-gray-400 text-white py-3 rounded-lg font-semibold mr-2"
                 onClick={() => setStep(1)}
               >
                 Back
               </button>
               <button
-                className="w-full bg-gradient-to-t from-[#020202] to-[#0E1D33] text-white py-3 rounded-lg font-semibold"
+                className={`w-full bg-gradient-to-t from-[#020202] to-[#0E1D33] text-white py-3 rounded-lg font-semibold ${isStep2DataValid ? 'cursor-pointer' : 'cursor-not-allowed bg-gradient-to-t from-gray-400 to-gray-500'}`}
                 onClick={handleContinueToStep3}
                 disabled={!isStep2DataValid}
               >
@@ -340,7 +340,7 @@ const SendFundsModal: React.FC<SendFundsModalProps> = ({ isOpen, onClose }) => {
             />
             <div className="mt-4 flex items-center gap-4">
               <button
-                className="w-1/2 bg-gray-500 hover:bg-gray-400 text-white py-3 rounded-lg font-semibold mr-2"
+                className="w-1/2 bg-black hover:bg-gray-400 text-white py-3 rounded-lg font-semibold mr-2"
                 onClick={() => setStep(2)}
               >
                 Back
