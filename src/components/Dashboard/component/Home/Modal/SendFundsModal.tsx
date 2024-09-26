@@ -110,9 +110,10 @@ const SendFundsModal: React.FC<SendFundsModalProps> = ({ isOpen, onClose }) => {
     console.log(postData);
 
     if (postData.bank === "033" && postData.account === "0000000000") {
-      setStep(2);
       setAccountName("Test Account");
-
+      setShowAccountName(true);
+      setStep(2);
+      setIsLoading(false);
       return;
     }
 
@@ -257,7 +258,7 @@ const SendFundsModal: React.FC<SendFundsModalProps> = ({ isOpen, onClose }) => {
             />
 
             {showAccountName && (
-              <div className="flex flex-col mb-6">
+              <div className="flex flex-col mb-2">
                 <label className="block mb-2 text-sm">Account Name</label>
                 <div className="relative flex items-center">
                   <div className="absolute left-3 z-10">
@@ -277,11 +278,14 @@ const SendFundsModal: React.FC<SendFundsModalProps> = ({ isOpen, onClose }) => {
             )}
 
             {errorMessage && (
-              <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded-xl text-sm">
+              <div className="mb-2  p-3 bg-red-100 border border-red-400 text-red-700 rounded-xl text-sm">
                 {errorMessage}
               </div>
             )}
-
+            <p className="text-[.875rem] font-medium text-gray-800 mb-2 text-center">
+              Note: Transfers can only be made to a UBA test account
+              (0000000000)
+            </p>
             <button
               type="button"
               onClick={handleSubmit}
