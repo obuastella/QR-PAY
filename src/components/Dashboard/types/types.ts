@@ -72,3 +72,8 @@ export interface receiptProps {
 export interface CameraToggleProps {
   isModalOpen: boolean;
 }
+
+export interface ProfileMenuProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
