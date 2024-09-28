@@ -1,4 +1,4 @@
 // config/config.ts
-const BASE_URL = "http://localhost:3000";
+const BASE_URL = "https://qr-pay-backend.vercel.app";
 
 export default BASE_URL;

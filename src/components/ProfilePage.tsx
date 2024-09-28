@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import BASE_URL from "@/config/apiconfig";
 
 // Define a type for the user profile data
 interface UserProfile {
@@ -25,7 +26,7 @@ const ProfilePage: React.FC = () => {
 
       try {
         const response = await axios.get<{ user: UserProfile }>(
-          "http://localhost:3000/api/user/me",
+          `${BASE_URL}/api/user/me`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
