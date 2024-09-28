@@ -17,14 +17,15 @@ import SidebarLayout from "./components/Dashboard/SidebarLayout";
 import ConfirmPassword from "./Pages/Auth/ConfirmPassword";
 import Success from "./Pages/Auth/Success";
 import Profile from "./components/Dashboard/Profile";
-import DisburseTransactions from "../DisburseTransaction";
+// import DisburseTransactions from "../DisburseTransaction";
+import ProfilePage from "./components/ProfilePage";
 
 const App = () => {
   return (
     <>
       <Routes>
         {/* Public routes */}
-        <Route path="/disburse" element={<DisburseTransactions />} />
+        <Route path="/disburse" element={<ProfilePage />} />
         <Route path="/" element={<Landing />} />
         <Route path="/create" element={<Create />} />
         <Route path="/login" element={<Login />} />
