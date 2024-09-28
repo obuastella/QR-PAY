@@ -101,7 +101,7 @@ const LoginForm = () => {
         <div className="mt-4 text-center">
           <p className="text-base font-medium">
             Don’t have an account?{" "}
-            <Link to="/" className="text-[#0D2B78]">
+            <Link to="/create" className="text-[#0D2B78]">
               Sign up
             </Link>
           </p>

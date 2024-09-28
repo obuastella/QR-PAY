@@ -7,8 +7,18 @@ import { FiSettings } from "react-icons/fi";
 import MobileSidebar from "./MobileSidebar";
 import { AiFillHome } from "react-icons/ai";
 import { RiExchangeBoxFill } from "react-icons/ri";
+import { useNavigate } from "react-router-dom"; // import useNavigate hook for navigation
 
 const Sidebar = () => {
+  const navigate = useNavigate(); // initialize the navigate hook
+
+  const handleLogout = () => {
+    // Remove token from localStorage
+    localStorage.removeItem("token");
+    // Redirect to login page
+    navigate("/login");
+  };
+
   return (
     <>
       <aside className="w-[232px] min-h-screen xl:flex flex-col text-white bg-[#040428] hidden">
@@ -57,7 +67,12 @@ const Sidebar = () => {
           />
           <div className="flex items-center mt-4 p-3 gap-3">
             <CiLogout className="w-5 h-5 text-red-500" />
-            <button className="text-red-500 block">Logout</button>
+            <button
+              className="text-red-500 block"
+              onClick={handleLogout} // attach handleLogout to the button's onClick event
+            >
+              Logout
+            </button>
           </div>
         </div>
       </aside>
