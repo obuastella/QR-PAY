@@ -1,15 +1,16 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import React, { useEffect, useState } from 'react';
-import { AiOutlineClose } from 'react-icons/ai';
+import React, { useEffect, useState } from "react";
+import { AiOutlineClose } from "react-icons/ai";
 import {
   ReceiveFundsModalProps,
   UserProfile,
-} from '@/components/Dashboard/types/types';
-import { IoCopyOutline } from 'react-icons/io5';
-import { BiDownload } from 'react-icons/bi';
-import axios from 'axios';
-import BASE_URL from '@/config/apiconfig';
-import { Toaster, toast } from 'sonner';
+} from "@/components/Dashboard/types/types";
+import { IoCopyOutline } from "react-icons/io5";
+import { BiDownload } from "react-icons/bi";
+import axios from "axios";
+import BASE_URL from "@/config/apiconfig";
+import { Toaster, toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 
 const ReceiveFundsModal: React.FC<ReceiveFundsModalProps> = ({
   isOpen,
@@ -20,17 +21,18 @@ const ReceiveFundsModal: React.FC<ReceiveFundsModalProps> = ({
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [isDownloading, setIsDownloading] = useState(false);
+  const navigate = useNavigate(); // initialize the navigate hook
 
   useEffect(() => {
     const fetchProfile = async () => {
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem("token");
 
       if (!token) {
-        setError('No token found. Please log in.');
+        setError("No token found. Please log in.");
         return;
       }
 
-      toast('Loading profile data...', { duration: 2000 });
+      toast("Loading profile data...", { duration: 2000 });
 
       try {
         const response = await axios.get<{ user: UserProfile }>(
@@ -42,11 +44,13 @@ const ReceiveFundsModal: React.FC<ReceiveFundsModalProps> = ({
           }
         );
         setProfile(response.data.user);
-        toast.success('Profile data loaded successfully!');
+        toast.success("Profile data loaded successfully!");
       } catch (error) {
-        console.error('Error fetching profile:', error);
-        toast.error('Error fetching profile data.');
-        setError('Error fetching profile data.');
+        localStorage.removeItem("token");
+        navigate("/login");
+        console.error("Error fetching profile:", error);
+        toast.error("Error fetching profile data.");
+        setError("Error fetching profile data.");
       }
     };
 
@@ -63,19 +67,19 @@ const ReceiveFundsModal: React.FC<ReceiveFundsModalProps> = ({
 
   const handleCopyAccountNumber = () => {
     navigator.clipboard.writeText(profile.accountNumber);
-    toast.success('Account number copied to clipboard!');
+    toast.success("Account number copied to clipboard!");
   };
 
   const downloadQRCode = () => {
     setIsDownloading(true);
-    const qrImage = document.getElementById('qrCodeImage') as HTMLImageElement;
+    const qrImage = document.getElementById("qrCodeImage") as HTMLImageElement;
 
     if (qrImage) {
-      const canvas = document.createElement('canvas');
-      const context = canvas.getContext('2d');
+      const canvas = document.createElement("canvas");
+      const context = canvas.getContext("2d");
       const img = new Image();
 
-      img.crossOrigin = 'anonymous';
+      img.crossOrigin = "anonymous";
       img.src = qrImage.src;
 
       img.onload = () => {
@@ -83,19 +87,19 @@ const ReceiveFundsModal: React.FC<ReceiveFundsModalProps> = ({
         canvas.height = img.height;
         context?.drawImage(img, 0, 0);
 
-        const pngFile = canvas.toDataURL('image/png');
-        const downloadLink = document.createElement('a');
+        const pngFile = canvas.toDataURL("image/png");
+        const downloadLink = document.createElement("a");
         downloadLink.href = pngFile;
         downloadLink.download = `${profile.firstName} ${profile.lastName} QR-code.png`;
         downloadLink.click();
 
         setIsDownloading(false);
-        toast.success('QR Code downloaded successfully!');
+        toast.success("QR Code downloaded successfully!");
       };
 
       img.onerror = () => {
         setIsDownloading(false);
-        toast.error('Failed to download QR Code.');
+        toast.error("Failed to download QR Code.");
       };
     }
   };
@@ -126,7 +130,7 @@ const ReceiveFundsModal: React.FC<ReceiveFundsModalProps> = ({
                   Acc No. {profile.firstName} {profile.lastName}
                 </span>
                 <span className="text-[#5E5858] font-normal text-xs">
-                  {' '}
+                  {" "}
                   - {profile.accountNumber}
                 </span>
               </div>
@@ -147,14 +151,14 @@ const ReceiveFundsModal: React.FC<ReceiveFundsModalProps> = ({
               id="qrCodeImage"
               src={profile.qrCode}
               alt="QR-Code"
-              style={{ width: '200px', height: '200px' }}
+              style={{ width: "200px", height: "200px" }}
             />
           </div>
 
           <button
             onClick={downloadQRCode}
             className={`w-full bg-gradient-to-b from-[#020202] to-[#0E1D33] text-white py-3 rounded-lg font-semibold flex justify-center items-center ${
-              isDownloading ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'
+              isDownloading ? "cursor-not-allowed opacity-50" : "cursor-pointer"
             }`}
             disabled={isDownloading}
           >

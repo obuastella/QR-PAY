@@ -12,6 +12,7 @@ const PersonalInfoForm = () => {
   const data = location.state;
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [pin, setPin] = useState("");
   const [dob, setDob] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const userEmail = data?.email;
@@ -24,6 +25,7 @@ const PersonalInfoForm = () => {
       firstName: firstName,
       lastName: lastName,
       email: data.email,
+      pin: pin,
       password: data.password,
       dateOfBirth: dob,
       phoneNumber: phoneNumber,
@@ -107,6 +109,22 @@ const PersonalInfoForm = () => {
                     placeholder="Last Name"
                   />
                 </div>
+
+                <div>
+                  <label className="block text-base font-normal mb-2">
+                    Transaction Pin
+                  </label>
+                  <input
+                    required
+                    type="number"
+                    minLength={4}
+                    maxLength={4}
+                    value={pin}
+                    onChange={(e) => setPin(e.target.value)}
+                    className="w-full p-2 sm:p-3 border border-[#0D2B78] rounded-xl outline-2 outline-[#0D2B78]"
+                    placeholder="0000"
+                  />
+                </div>
               </div>
 
               <div className="mb-6">
@@ -160,7 +178,7 @@ const PersonalInfoForm = () => {
                   type="submit"
                   className="bg-[#0D2B78] hover:bg-[#203569] text-white px-6 py-2 sm:px-8 sm:py-3 rounded-lg font-medium text-sm"
                 >
-                  { loading ? "Loading..." : "Continue"}
+                  {loading ? "Loading..." : "Continue"}
                 </button>
               </div>
             </form>
