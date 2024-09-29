@@ -7,6 +7,16 @@ const QrCodeScan = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const cameraToggleRef = useRef<{ stopCamera: () => void } | null>(null);
 
+  // Function to handle QR code result
+  const handleQrCodeResult = (result: string | null) => {
+    if (result) {
+      console.log('QR Code Result:', result);
+      // You can do something with the result here, like updating the state or performing an action
+    } else {
+      console.log('No QR code data found');
+    }
+  };
+
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -45,6 +55,7 @@ const QrCodeScan = () => {
             </button>
             <CameraToggle 
               isModalOpen={isModalOpen} 
+              onQrCodeResult={handleQrCodeResult} 
               ref={cameraToggleRef}
             />
           </div>
