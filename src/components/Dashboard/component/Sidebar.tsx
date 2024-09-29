@@ -67,10 +67,7 @@ const Sidebar = () => {
           />
           <div className="flex items-center mt-4 p-3 gap-3">
             <CiLogout className="w-5 h-5 text-red-500" />
-            <button
-              className="text-red-500 block"
-              onClick={handleLogout} // attach handleLogout to the button's onClick event
-            >
+            <button className="text-red-500 block" onClick={handleLogout}>
               Logout
             </button>
           </div>

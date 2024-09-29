@@ -1,12 +1,52 @@
-import { useState, useEffect, useRef } from 'react';
-import ProfileMenu from './ProfileMenu';
+import { useState, useEffect, useRef } from "react";
+import ProfileMenu from "./ProfileMenu";
+import BASE_URL from "@/config/apiconfig";
+import axios from "axios";
+
+// Define a type for the user profile data
+interface UserProfile {
+  firstName: string;
+  lastName: string;
+  email: string;
+  accountNumber: string;
+  qrCode: string; // This is the base64 string for the QR code image
+}
 
 function User() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
 
+  const [profile, setProfile] = useState<UserProfile | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
   useEffect(() => {
+    const fetchProfile = async () => {
+      const token = localStorage.getItem("token");
+
+      if (!token) {
+        setError("No token found. Please log in.");
+        return;
+      }
+
+      try {
+        const response = await axios.get<{ user: UserProfile }>(
+          `${BASE_URL}/api/user/me`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setProfile(response.data.user);
+      } catch (error) {
+        console.error("Error fetching profile:", error);
+        setError("Error fetching profile data.");
+      }
+    };
+
+    fetchProfile();
+
     function handleClickOutside(event: MouseEvent) {
       if (
         menuRef.current &&
@@ -17,11 +57,19 @@ function User() {
         setIsModalOpen(false);
       }
     }
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [menuRef]);
+
+  if (error) {
+    return <div>{error}</div>;
+  }
+
+  if (!profile) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="relative w-auto">
@@ -36,7 +84,9 @@ function User() {
           className="w-10 h-10 rounded-full"
         />
         <div className="flex flex-col">
-          <h2 className="font-medium sm:text-base text-sm">Omojola Zion</h2>
+          <h2 className="font-medium sm:text-base text-sm">
+            {profile.firstName} {profile.lastName}
+          </h2>
           <span className="font-normal sm:text-xs text-[10px] text-left">
             User Account
           </span>
