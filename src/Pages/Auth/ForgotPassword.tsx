@@ -28,20 +28,20 @@ function Form() {
     const payload = {
       email: email,
     };
-    // console.log(payload);
+    console.log(payload);
     try {
       const response = await axios.post(
         `${BASE_URL}/api/auth/forgot-password`,
         payload
       );
-      // console.log(response);
+      console.log(response);
       // const token = response.data.token;
       toast.success(response.data.message);
 
       // localStorage.setItem("token", token);
       navigate('/confirm-password');
     } catch (error: any) {
-      // console.log(error);
+      console.log(error);
       if (error.response.data.message === 'User not registered') {
         toast.error('User not registered.');
       } else {

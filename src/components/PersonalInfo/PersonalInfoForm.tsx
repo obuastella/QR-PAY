@@ -30,7 +30,7 @@ const PersonalInfoForm = () => {
       dateOfBirth: dob,
       phoneNumber: phoneNumber,
     };
-    // console.log(payload);
+    console.log(payload);
     try {
       const response = await axios.post(
         `${BASE_URL}/api/auth/register`,
@@ -39,10 +39,10 @@ const PersonalInfoForm = () => {
       const token = response.data.token;
       toast.success(response.data.message);
       localStorage.setItem('token', token);
-      // console.log(userEmail);
+      console.log(userEmail);
       navigate('/otp', { state: { userEmail } });
     } catch (error: any) {
-      // console.log(error);
+      console.log(error);
       if (error.response.data.message === 'User already exists') {
         toast.error('User already exists!');
       } else {

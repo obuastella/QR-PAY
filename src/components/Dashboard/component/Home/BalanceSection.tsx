@@ -19,10 +19,10 @@ export const BalanceSection = () => {
             },
           }
         );
-        // // console.log(response.data.data);
+        // console.log(response.data.data);
         setBalance(response.data.data.NGN.available_balance);
       } catch (e: any) {
-        // console.log(e);
+        console.log(e);
       }
     };
     getBalance();

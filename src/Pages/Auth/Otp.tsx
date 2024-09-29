@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useState } from 'react';
 import {
   InputOTP,
@@ -19,23 +18,23 @@ export default function Otp() {
   const data = location.state;
   const [otp, setOtp] = useState<string>(''); // State for OTP
   const [isOtpComplete, setIsOtpComplete] = useState<boolean>(false);
-  // console.log(data?.userEmail);
+  console.log(data?.userEmail);
   const handleOtpChange = async (value: string) => {
     setOtp(value);
     if (value.length === 6) {
       setIsOtpComplete(true);
-      // console.log("Entered OTP:", otp);
+      console.log('Entered OTP:', otp);
       const payload = {
         email: data.userEmail,
         otp: value,
       };
-      // console.log(payload);
+      console.log(payload);
       try {
         const response = await axios.post(
           `${BASE_URL}/api/auth/verify-otp`,
           payload
         );
-        // console.log("Response", response.data);
+        console.log('Response', response.data);
         if (response.data.message === 'OTP verified') {
           localStorage.setItem('token', response.data.token);
           toast.success('User created successfully!');
@@ -44,7 +43,7 @@ export default function Otp() {
           }, 2000);
         }
       } catch (error: any) {
-        // console.log(error);
+        console.log(error);
         if (error.response.data.message === 'User already exists') {
           toast.error('User already exists!');
         } else {

@@ -16,13 +16,13 @@ export const RenderHeaderContent = () => {
     id: number;
     label: string;
   }) => {
-    // console.log('Transaction Selected filter:', option);
+    console.log('Transaction Selected filter:', option);
   };
   const handleBeneficiaryFilterSelect = (option: {
     id: number;
     label: string;
   }) => {
-    // console.log('Beneficiary Selected filter:', option);
+    console.log('Beneficiary Selected filter:', option);
   };
 
   switch (location.pathname) {

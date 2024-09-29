@@ -53,7 +53,7 @@ const DisburseTransaction = () => {
 
     try {
       const response = await axios.post(url, data, config);
-      // console.log("Response:", response.data);
+      console.log('Response:', response.data);
       // console.log(response.data.bank_code);
     } catch (error) {
       if (axios.isAxiosError(error)) {

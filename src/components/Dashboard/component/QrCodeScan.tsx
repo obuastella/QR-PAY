@@ -10,10 +10,10 @@ const QrCodeScan = () => {
   // Function to handle QR code result
   const handleQrCodeResult = (result: string | null) => {
     if (result) {
-      // console.log('QR Code Result:', result);
+      console.log('QR Code Result:', result);
       // You can do something with the result here, like updating the state or performing an action
     } else {
-      // console.log('No QR code data found');
+      console.log('No QR code data found');
     }
   };
 

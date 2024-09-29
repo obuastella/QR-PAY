@@ -16,22 +16,22 @@ const LoginForm = () => {
   const handleLogin = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     setLoading(true);
-    // // console.log("email: " + email + "\n" + "password: " + password);
+    // console.log("email: " + email + "\n" + "password: " + password);
     const payload = {
       email: email,
       password: password,
     };
-    // // console.log(payload);
+    // console.log(payload);
     try {
       const response = await axios.post(`${BASE_URL}/api/auth/login`, payload);
-      // // console.log(response);
+      // console.log(response);
       const token = response.data.token;
-      toast.success('Logged in successfully!');
+      toast.success('loged in successfully!');
       localStorage.setItem('token', token);
 
       navigate('/home');
     } catch (error: any) {
-      // // console.log(error);
+      // console.log(error);
       if (error.response.data.message === 'User already exists') {
         toast.error('User already exists!');
       } else {
