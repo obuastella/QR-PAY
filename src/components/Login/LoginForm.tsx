@@ -9,11 +9,13 @@ const LoginForm = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const isDisabled = !email || !password;
+  const isDisabled = !email || !password || loading; 
 
   const handleLogin = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
+    setLoading(true); 
     console.log("email: " + email + "\n" + "password: " + password);
     const payload = {
       email: email,
@@ -35,12 +37,15 @@ const LoginForm = () => {
       } else {
         toast.error(error.response.data.message);
       }
+    } finally {
+      setLoading(false);
     }
   };
 
   const popUp = () => {
     toast.warning("Currently working on this feature! 😔");
   };
+
   return (
     <>
       <Toaster richColors position="top-right" />
@@ -95,7 +100,7 @@ const LoginForm = () => {
             }`}
             disabled={isDisabled}
           >
-            Sign in
+            {loading ? "Signing in..." : "Sign in"} 
           </button>
         </form>
         <div className="mt-4 text-center">

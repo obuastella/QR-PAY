@@ -15,8 +15,11 @@ const PersonalInfoForm = () => {
   const [dob, setDob] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const userEmail = data?.email;
+  const [loading, setLoading] = useState(false);
+
   const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
+    setLoading(true);
     const payload = {
       firstName: firstName,
       lastName: lastName,
@@ -44,6 +47,8 @@ const PersonalInfoForm = () => {
         toast.error(error.response.data.message);
         // toast.error("An error has occurred");
       }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -147,7 +152,7 @@ const PersonalInfoForm = () => {
               <div className="flex flex-col sm:flex-row justify-end gap-4">
                 <Link
                   to="/"
-                  className="flex justify-center itesm-center bg-[#09111D] hover:bg-[#122138] text-white px-6 py-2 sm:px-8 sm:py-3 rounded-lg font-medium text-sm"
+                  className="flex justify-center items-center bg-[#09111D] hover:bg-[#122138] text-white px-6 py-2 sm:px-8 sm:py-3 rounded-lg font-medium text-sm"
                 >
                   Back
                 </Link>
@@ -155,7 +160,7 @@ const PersonalInfoForm = () => {
                   type="submit"
                   className="bg-[#0D2B78] hover:bg-[#203569] text-white px-6 py-2 sm:px-8 sm:py-3 rounded-lg font-medium text-sm"
                 >
-                  Continue
+                  { loading ? "Loading..." : "Continue"}
                 </button>
               </div>
             </form>
