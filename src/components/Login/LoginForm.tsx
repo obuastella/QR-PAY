@@ -1,39 +1,39 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import BASE_URL from "@/config/apiconfig";
-import axios from "axios";
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { Toaster, toast } from "sonner";
+import BASE_URL from '@/config/apiconfig';
+import axios from 'axios';
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { Toaster, toast } from 'sonner';
 
 const LoginForm = () => {
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const isDisabled = !email || !password || loading; 
+  const isDisabled = !email || !password || loading;
 
   const handleLogin = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    setLoading(true); 
-    console.log("email: " + email + "\n" + "password: " + password);
+    setLoading(true);
+    // // console.log("email: " + email + "\n" + "password: " + password);
     const payload = {
       email: email,
       password: password,
     };
-    console.log(payload);
+    // // console.log(payload);
     try {
       const response = await axios.post(`${BASE_URL}/api/auth/login`, payload);
-      console.log(response);
+      // // console.log(response);
       const token = response.data.token;
-      toast.success("Logged in successfully!");
-      localStorage.setItem("token", token);
+      toast.success('Logged in successfully!');
+      localStorage.setItem('token', token);
 
-      navigate("/home");
+      navigate('/home');
     } catch (error: any) {
-      console.log(error);
-      if (error.response.data.message === "User already exists") {
-        toast.error("User already exists!");
+      // // console.log(error);
+      if (error.response.data.message === 'User already exists') {
+        toast.error('User already exists!');
       } else {
         toast.error(error.response.data.message);
       }
@@ -43,7 +43,7 @@ const LoginForm = () => {
   };
 
   const popUp = () => {
-    toast.warning("Currently working on this feature! 😔");
+    toast.warning('Currently working on this feature! 😔');
   };
 
   return (
@@ -95,17 +95,17 @@ const LoginForm = () => {
             type="submit"
             className={`w-full text-white p-3 rounded-lg font-semibold transition ease-out duration-300 ${
               isDisabled
-                ? "bg-[#A1A1A1] cursor-not-allowed"
-                : "bg-gradient-to-t from-[#020202] to-[#0E1D33]"
+                ? 'bg-[#A1A1A1] cursor-not-allowed'
+                : 'bg-gradient-to-t from-[#020202] to-[#0E1D33]'
             }`}
             disabled={isDisabled}
           >
-            {loading ? "Signing in..." : "Sign in"} 
+            {loading ? 'Signing in...' : 'Sign in'}
           </button>
         </form>
         <div className="mt-4 text-center">
           <p className="text-base font-medium">
-            Don’t have an account?{" "}
+            Don’t have an account?{' '}
             <Link to="/create" className="text-[#0D2B78]">
               Sign up
             </Link>

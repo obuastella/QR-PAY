@@ -107,7 +107,7 @@ const SendFundsModal: React.FC<SendFundsModalProps> = ({ isOpen, onClose }) => {
       account: accountNumber,
       currency: "NGN",
     };
-    console.log(postData);
+    // console.log(postData);
 
     if (postData.bank === "033" && postData.account === "0000000000") {
       setAccountName("Test Account");
@@ -159,14 +159,14 @@ const SendFundsModal: React.FC<SendFundsModalProps> = ({ isOpen, onClose }) => {
   };
 
   const handleConfirm = async () => {
-    console.log("Send Funds Details: ", {
-      accountNumber,
-      bankName: selectedBank?.name,
-      accountName,
-      amount,
-      narration,
-      pin,
-    });
+    // console.log("Send Funds Details: ", {
+    //   accountNumber,
+    //   bankName: selectedBank?.name,
+    //   accountName,
+    //   amount,
+    //   narration,
+    //   pin,
+    // });
 
     const url = "https://api.korapay.com/merchant/api/v1/transactions/disburse";
 
@@ -199,8 +199,8 @@ const SendFundsModal: React.FC<SendFundsModalProps> = ({ isOpen, onClose }) => {
 
     try {
       const response = await axios.post(url, data, config);
-      console.log("Response:", response.data);
-      console.log(response.data.bank_code);
+      // console.log("Response:", response.data);
+      // console.log(response.data.bank_code);
     } catch (error) {
       if (axios.isAxiosError(error)) {
         console.error(

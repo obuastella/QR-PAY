@@ -1,19 +1,20 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import BASE_URL from "@/config/apiconfig";
-import axios from "axios";
-import { useState } from "react";
-import { FaRegUser } from "react-icons/fa6";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Toaster, toast } from "sonner";
+import BASE_URL from '@/config/apiconfig';
+import axios from 'axios';
+import { useState } from 'react';
+import { FaRegUser } from 'react-icons/fa6';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Toaster, toast } from 'sonner';
 
 const PersonalInfoForm = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const data = location.state;
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [dob, setDob] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [pin, setPin] = useState('');
+  const [dob, setDob] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
   const userEmail = data?.email;
   const [loading, setLoading] = useState(false);
 
@@ -24,11 +25,12 @@ const PersonalInfoForm = () => {
       firstName: firstName,
       lastName: lastName,
       email: data.email,
+      pin: pin,
       password: data.password,
       dateOfBirth: dob,
       phoneNumber: phoneNumber,
     };
-    console.log(payload);
+    // console.log(payload);
     try {
       const response = await axios.post(
         `${BASE_URL}/api/auth/register`,
@@ -36,13 +38,13 @@ const PersonalInfoForm = () => {
       );
       const token = response.data.token;
       toast.success(response.data.message);
-      localStorage.setItem("token", token);
-      console.log(userEmail);
-      navigate("/otp", { state: { userEmail } });
+      localStorage.setItem('token', token);
+      // console.log(userEmail);
+      navigate('/otp', { state: { userEmail } });
     } catch (error: any) {
-      console.log(error);
-      if (error.response.data.message === "User already exists") {
-        toast.error("User already exists!");
+      // console.log(error);
+      if (error.response.data.message === 'User already exists') {
+        toast.error('User already exists!');
       } else {
         toast.error(error.response.data.message);
         // toast.error("An error has occurred");
@@ -107,6 +109,22 @@ const PersonalInfoForm = () => {
                     placeholder="Last Name"
                   />
                 </div>
+
+                <div>
+                  <label className="block text-base font-normal mb-2">
+                    Transaction Pin
+                  </label>
+                  <input
+                    required
+                    type="number"
+                    minLength={4}
+                    maxLength={4}
+                    value={pin}
+                    onChange={(e) => setPin(e.target.value)}
+                    className="w-full p-2 sm:p-3 border border-[#0D2B78] rounded-xl outline-2 outline-[#0D2B78]"
+                    placeholder="0000"
+                  />
+                </div>
               </div>
 
               <div className="mb-6">
@@ -160,7 +178,7 @@ const PersonalInfoForm = () => {
                   type="submit"
                   className="bg-[#0D2B78] hover:bg-[#203569] text-white px-6 py-2 sm:px-8 sm:py-3 rounded-lg font-medium text-sm"
                 >
-                  { loading ? "Loading..." : "Continue"}
+                  {loading ? 'Loading...' : 'Continue'}
                 </button>
               </div>
             </form>

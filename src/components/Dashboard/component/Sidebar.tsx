@@ -65,11 +65,12 @@ const Sidebar = () => {
             icon={<BiSupport className="w-5 h-5 " />}
             label="Support"
           />
-          <div className="flex items-center mt-4 p-3 gap-3">
+          <div
+            className="flex items-center mt-4 p-3 gap-3"
+            onClick={handleLogout}
+          >
             <CiLogout className="w-5 h-5 text-red-500" />
-            <button className="text-red-500 block" onClick={handleLogout}>
-              Logout
-            </button>
+            <button className="text-red-500 block">Logout</button>
           </div>
         </div>
       </aside>

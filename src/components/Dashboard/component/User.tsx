@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import ProfileMenu from "./ProfileMenu";
 import BASE_URL from "@/config/apiconfig";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 // Define a type for the user profile data
 interface UserProfile {
@@ -19,6 +20,7 @@ function User() {
 
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const navigate = useNavigate(); // initialize the navigate hook
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -40,6 +42,8 @@ function User() {
         );
         setProfile(response.data.user);
       } catch (error) {
+        localStorage.removeItem("token");
+        navigate("/login");
         console.error("Error fetching profile:", error);
         setError("Error fetching profile data.");
       }

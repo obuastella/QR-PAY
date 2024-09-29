@@ -4,6 +4,7 @@ import { FaEdit } from "react-icons/fa";
 import FootNote from "./FootNote";
 import axios from "axios";
 import BASE_URL from "@/config/apiconfig";
+import { useNavigate } from "react-router-dom";
 
 interface UserProfile {
   firstName: string;
@@ -58,6 +59,7 @@ const EditProfile = () => {
 
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const navigate = useNavigate(); // initialize the navigate hook
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -79,6 +81,8 @@ const EditProfile = () => {
         );
         setProfile(response.data.user);
       } catch (error) {
+        localStorage.removeItem("token");
+        navigate("/login");
         console.error("Error fetching profile:", error);
         setError("Error fetching profile data.");
       }

@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect, useState } from "react";
-import { Eye, EyeOff } from "lucide-react";
-import KORA_URL from "@/config/kora";
-import axios from "axios";
+import { useEffect, useState } from 'react';
+import { Eye, EyeOff } from 'lucide-react';
+import KORA_URL from '@/config/kora';
+import axios from 'axios';
 
 export const BalanceSection = () => {
   const secretKey = import.meta.env.VITE_KORA_SECRET_KEY;
   const [balance, setBalance] = useState<number | undefined>();
-  
+
   useEffect(() => {
     const getBalance = async () => {
       try {
@@ -19,10 +19,10 @@ export const BalanceSection = () => {
             },
           }
         );
-        // console.log(response.data.data);
+        // // console.log(response.data.data);
         setBalance(response.data.data.NGN.available_balance);
       } catch (e: any) {
-        console.log(e);
+        // console.log(e);
       }
     };
     getBalance();
@@ -60,12 +60,12 @@ export const BalanceSection = () => {
         </h2>
         <div className="text-4xl font-bold text-[#040428] flex items-center gap-4 z-10">
           <span className="font-medium border-red-500 text-2xl whitespace-nowrap">
-            ₦ {showBalance ? formatAmount(balance) : "*****"}
+            ₦ {showBalance ? formatAmount(balance) : '*****'}
           </span>
           <button
             onClick={toggleBalance}
             className="text-[#040428] cursor-pointer transition-colors duration-200"
-            aria-label={showBalance ? "Hide balance" : "Show balance"}
+            aria-label={showBalance ? 'Hide balance' : 'Show balance'}
           >
             {showBalance ? <EyeOff size={24} /> : <Eye size={24} />}
           </button>

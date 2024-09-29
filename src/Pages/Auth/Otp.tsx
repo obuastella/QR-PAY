@@ -1,50 +1,50 @@
-import { useState } from "react";
+import { useState } from 'react';
 import {
   InputOTP,
   InputOTPGroup,
   InputOTPSlot,
-} from "@/components/ui/input-otp";
-import { REGEXP_ONLY_DIGITS_AND_CHARS } from "input-otp";
-import Info from "../../components/Info";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import axios from "axios";
-import BASE_URL from "@/config/apiconfig";
-import { Toaster, toast } from "sonner";
+} from '@/components/ui/input-otp';
+import { REGEXP_ONLY_DIGITS_AND_CHARS } from 'input-otp';
+import Info from '../../components/Info';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import BASE_URL from '@/config/apiconfig';
+import { Toaster, toast } from 'sonner';
 
 export default function Otp() {
   const location = useLocation();
   const navigate = useNavigate();
   const data = location.state;
-  const [otp, setOtp] = useState<string>(""); // State for OTP
+  const [otp, setOtp] = useState<string>(''); // State for OTP
   const [isOtpComplete, setIsOtpComplete] = useState<boolean>(false);
-  console.log(data?.userEmail);
+  // console.log(data?.userEmail);
   const handleOtpChange = async (value: string) => {
     setOtp(value);
     if (value.length === 6) {
       setIsOtpComplete(true);
-      console.log("Entered OTP:", otp);
+      // console.log("Entered OTP:", otp);
       const payload = {
         email: data.userEmail,
         otp: value,
       };
-      console.log(payload);
+      // console.log(payload);
       try {
         const response = await axios.post(
           `${BASE_URL}/api/auth/verify-otp`,
           payload
         );
-        console.log("Response", response.data);
-        if (response.data.message === "OTP verified") {
-          localStorage.setItem("token", response.data.token);
-          toast.success("User created successfully!");
+        // console.log("Response", response.data);
+        if (response.data.message === 'OTP verified') {
+          localStorage.setItem('token', response.data.token);
+          toast.success('User created successfully!');
           setTimeout(() => {
-            navigate("/login");
+            navigate('/login');
           }, 2000);
         }
       } catch (error: any) {
-        console.log(error);
-        if (error.response.data.message === "User already exists") {
-          toast.error("User already exists!");
+        // console.log(error);
+        if (error.response.data.message === 'User already exists') {
+          toast.error('User already exists!');
         } else {
           toast.error(error.response.data.message);
         }
@@ -84,7 +84,7 @@ export default function Otp() {
           <button
             type="submit"
             className={`px-6 py-2 sm:px-8 sm:py-3 rounded-lg font-medium text-sm text-white ${
-              isOtpComplete ? "bg-primary hover:bg-primary/90" : "bg-[#A1A1A1]"
+              isOtpComplete ? 'bg-primary hover:bg-primary/90' : 'bg-[#A1A1A1]'
             }`}
             disabled={!isOtpComplete}
           >

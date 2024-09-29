@@ -1,15 +1,15 @@
-import axios from "axios";
-import { useState } from "react";
+import axios from 'axios';
+import { useState } from 'react';
 
 const DisburseTransaction = () => {
   const [formData, setFormData] = useState({
-    amount: "",
-    currency: "NGN",
-    narration: "",
-    bank: "",
-    account: "",
-    name: "",
-    email: "",
+    amount: '',
+    currency: 'NGN',
+    narration: '',
+    bank: '',
+    account: '',
+    name: '',
+    email: '',
   });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -23,12 +23,12 @@ const DisburseTransaction = () => {
   const handleDisburse = async () => {
     const uniqueReference = `txn-${Date.now()}`;
 
-    const url = "https://api.korapay.com/merchant/api/v1/transactions/disburse";
+    const url = 'https://api.korapay.com/merchant/api/v1/transactions/disburse';
 
     const data = {
       reference: uniqueReference,
       destination: {
-        type: "bank_account",
+        type: 'bank_account',
         amount: formData.amount,
         currency: formData.currency,
         narration: formData.narration,
@@ -46,23 +46,23 @@ const DisburseTransaction = () => {
     const config = {
       headers: {
         Authorization:
-          "Bearer sk_test_CMZB7dakKNFb2AqeX3fXFQJcXKgLTdGPSMjAq3iq",
-        "Content-Type": "application/json",
+          'Bearer sk_test_CMZB7dakKNFb2AqeX3fXFQJcXKgLTdGPSMjAq3iq',
+        'Content-Type': 'application/json',
       },
     };
 
     try {
       const response = await axios.post(url, data, config);
-      console.log("Response:", response.data);
-      console.log(response.data.bank_code);
+      // console.log("Response:", response.data);
+      // console.log(response.data.bank_code);
     } catch (error) {
       if (axios.isAxiosError(error)) {
         console.error(
-          "Error:",
+          'Error:',
           error.response ? error.response.data : error.message
         );
       } else {
-        console.error("Unexpected Error:", error);
+        console.error('Unexpected Error:', error);
       }
     }
   };

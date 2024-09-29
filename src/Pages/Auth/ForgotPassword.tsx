@@ -1,10 +1,10 @@
 //wip
-import SidePanel from "@/components/Login/SidePanel";
-import BASE_URL from "@/config/apiconfig";
-import axios from "axios";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Toaster, toast } from "sonner";
+import SidePanel from '@/components/Login/SidePanel';
+import BASE_URL from '@/config/apiconfig';
+import axios from 'axios';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Toaster, toast } from 'sonner';
 
 function ForgotPassword() {
   return (
@@ -19,7 +19,7 @@ export default ForgotPassword;
 
 function Form() {
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState('');
 
   const isDisabled = !email;
 
@@ -28,22 +28,22 @@ function Form() {
     const payload = {
       email: email,
     };
-    console.log(payload);
+    // console.log(payload);
     try {
       const response = await axios.post(
         `${BASE_URL}/api/auth/forgot-password`,
         payload
       );
-      console.log(response);
+      // console.log(response);
       // const token = response.data.token;
       toast.success(response.data.message);
 
       // localStorage.setItem("token", token);
-      navigate("/confirm-password");
+      navigate('/confirm-password');
     } catch (error: any) {
-      console.log(error);
-      if (error.response.data.message === "User not registered") {
-        toast.error("User not registered.");
+      // console.log(error);
+      if (error.response.data.message === 'User not registered') {
+        toast.error('User not registered.');
       } else {
         toast.error(error.response.data.message);
       }
@@ -82,8 +82,8 @@ function Form() {
             type="submit"
             className={`w-full text-white p-3 rounded-lg font-semibold transition ease-out duration-300 ${
               isDisabled
-                ? "bg-[#A1A1A1] cursor-not-allowed"
-                : "bg-gradient-to-t from-[#020202] to-[#0E1D33]"
+                ? 'bg-[#A1A1A1] cursor-not-allowed'
+                : 'bg-gradient-to-t from-[#020202] to-[#0E1D33]'
             }`}
             disabled={isDisabled}
           >
