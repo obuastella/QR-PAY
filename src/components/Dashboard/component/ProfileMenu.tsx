@@ -40,11 +40,12 @@ const ProfileMenu: React.FC<ProfileMenuProps> = ({ isOpen }) => {
           Settings
         </span>
       </div>
-      <button className="flex gap-x-3 items-center py-3 text-red-500 w-full hover:bg-[#6868d299] transition-colors duration-200 rounded-md px-5">
+      <button
+        className="flex gap-x-3 items-center py-3 text-red-500 w-full hover:bg-[#6868d299] transition-colors duration-200 rounded-md px-5"
+        onClick={handleLogout}
+      >
         <CiLogout className="text-red-500 w-5 h-5 font-medium" />
-        <span className="text-red-500 font-bold" onClick={handleLogout}>
-          Logout
-        </span>
+        <span className="text-red-500 font-bold">Logout</span>
       </button>
     </div>
   );
