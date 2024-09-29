@@ -211,7 +211,7 @@ function QrCodePaymentModal({
           )}
         </div>
       </div>
-      
+
       {showSuccessModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[10001]">
           <div className="bg-white sm:rounded-[20px] rounded-none shadow-lg sm:w-auto sm:h-auto h-full w-full p-6 relative justify-center flex flex-col">
@@ -233,12 +233,12 @@ function QrCodePaymentModal({
               You’ve successfully transferred ₦{formatAmount(amount)} to {name}{' '}
               - {bankName}
             </p>
-            <button
+            {/* <button
               onClick={() => setShowReceiptModal(true)} // Show receipt modal here
               className="w-full bg-gradient-to-t from-[#020202] to-[#0E1D33] text-white py-2 rounded-lg"
             >
               View Receipt
-            </button>
+            </button> */}
           </div>
         </div>
       )}
