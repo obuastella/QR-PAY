@@ -37,8 +37,8 @@ export interface BankListProps {
 export interface ReceiveFundsModalProps {
   isOpen: boolean;
   onClose: () => void;
-  accountName: string;
-  accountNumber: string;
+  // accountName: string;
+  // accountNumber: string;
 }
 
 // type OnSendFunds = (amount: string, narration: string) => void;
@@ -69,11 +69,36 @@ export interface receiptProps {
   bankName: string;
 }
 
+// type CloseModalFunction = () => void;
+
 export interface CameraToggleProps {
   isModalOpen: boolean;
+  onQrCodeResult: (result: string | null) => void;
+  // closeModal: CloseModalFunction;
 }
 
 export interface ProfileMenuProps {
   isOpen: boolean;
   onClose: () => void;
+}
+
+export interface UserProfile {
+  firstName: string;
+  lastName: string;
+  email: string;
+  accountNumber: string;
+  qrCode: string;
+}
+
+export interface QrCodeData {
+  accountNumber: string;
+  name: string;
+}
+
+export interface QrCodePaymentModal2Props {
+  accountNumber: string | undefined;
+  bankName: string;
+  accountName: string | undefined;
+  amount: string;
+  narration: string;
 }
