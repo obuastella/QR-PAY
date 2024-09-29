@@ -53,9 +53,9 @@ const QrCodeScan = () => {
             >
               <AiOutlineClose />
             </button>
-            <CameraToggle 
-              isModalOpen={isModalOpen} 
-              onQrCodeResult={handleQrCodeResult} 
+            <CameraToggle
+              isModalOpen={isModalOpen}
+              onQrCodeResult={handleQrCodeResult}
               ref={cameraToggleRef}
             />
           </div>

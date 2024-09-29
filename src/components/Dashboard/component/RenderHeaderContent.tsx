@@ -1,18 +1,27 @@
 import { useLocation } from 'react-router-dom';
-import { BiSupport } from "react-icons/bi";
-import { IoMdNotificationsOutline } from "react-icons/io";
-import FilterComponent from "./FilterComponent";
-import { transactionFilterOptions, beneficiaryFilterOptions } from "./objects/FilterIOptions";
-import SearchBar from "./Searchbar";
+import { BiSupport } from 'react-icons/bi';
+import { IoMdNotificationsOutline } from 'react-icons/io';
+import FilterComponent from './FilterComponent';
+import {
+  transactionFilterOptions,
+  beneficiaryFilterOptions,
+} from './objects/FilterIOptions';
+import SearchBar from './Searchbar';
 import User from './User';
 
 export const RenderHeaderContent = () => {
   const location = useLocation();
 
-  const handleTransactionFilterSelect = (option: { id: number; label: string }) => {
+  const handleTransactionFilterSelect = (option: {
+    id: number;
+    label: string;
+  }) => {
     console.log('Transaction Selected filter:', option);
   };
-  const handleBeneficiaryFilterSelect = (option: { id: number; label: string }) => {
+  const handleBeneficiaryFilterSelect = (option: {
+    id: number;
+    label: string;
+  }) => {
     console.log('Beneficiary Selected filter:', option);
   };
 
@@ -21,9 +30,7 @@ export const RenderHeaderContent = () => {
       return (
         <>
           <div className="flex justify-between items-center">
-            <h1 className="text-2xl font-semibold hidden md:block">
-              Overview
-            </h1>
+            <h1 className="text-2xl font-semibold hidden md:block">Overview</h1>
             <div className="items-center gap-4 hidden md:flex">
               <BiSupport className="w-10 h-10 rounded-full bg-white p-2 text-[#040428]" />
               <IoMdNotificationsOutline className="w-10 h-10 rounded-full bg-white p-2 text-[#040428]" />
@@ -54,9 +61,7 @@ export const RenderHeaderContent = () => {
       return (
         <div className="flex justify-between items-center">
           <div className="xl:flex xl:flex-row flex-col items-center gap-10 space-y-3 xl:space-y-0 w-full xl:w-auto">
-            <h1 className="xl:text-2xl text-xl font-semibold">
-              Transactions
-            </h1>
+            <h1 className="xl:text-2xl text-xl font-semibold">Transactions</h1>
             <div className="flex items-center gap-3">
               <SearchBar />
               <FilterComponent
@@ -76,9 +81,7 @@ export const RenderHeaderContent = () => {
       return (
         <div className="flex justify-between items-center">
           <div className="xl:flex xl:flex-row flex-col items-center gap-10 space-y-3 xl:space-y-0 w-full xl:w-auto">
-            <h1 className="xl:text-2xl text-xl font-semibold">
-              Beneficiaries
-            </h1>
+            <h1 className="xl:text-2xl text-xl font-semibold">Beneficiaries</h1>
             <div className="flex items-center gap-3">
               <SearchBar />
               <FilterComponent

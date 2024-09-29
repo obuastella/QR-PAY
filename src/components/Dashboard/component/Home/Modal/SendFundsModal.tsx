@@ -1,36 +1,36 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useState, useEffect } from "react";
-import { AiOutlineClose } from "react-icons/ai";
-import { fetchBanks } from "@/components/Dashboard/types/Services/apiService";
-import BankList from "./BankList";
-import { Bank, SendFundsModalProps } from "@/components/Dashboard/types/types";
-import axios from "axios";
-import { IoMdCheckmarkCircleOutline } from "react-icons/io";
-import { API_URL } from "@/components/Dashboard/types/Services/API";
-import SendFunds2 from "./SendFunds2";
-import SendFunds3 from "./SendFunds3";
-import ReceiptModal from "./ReceiptModal";
+import React, { useState, useEffect } from 'react';
+import { AiOutlineClose } from 'react-icons/ai';
+import { fetchBanks } from '@/components/Dashboard/types/Services/apiService';
+import BankList from './BankList';
+import { Bank, SendFundsModalProps } from '@/components/Dashboard/types/types';
+import axios from 'axios';
+import { IoMdCheckmarkCircleOutline } from 'react-icons/io';
+import { API_URL } from '@/components/Dashboard/types/Services/API';
+import SendFunds2 from './SendFunds2';
+import SendFunds3 from './SendFunds3';
+import ReceiptModal from './ReceiptModal';
 
 const SendFundsModal: React.FC<SendFundsModalProps> = ({ isOpen, onClose }) => {
   const [banks, setBanks] = useState<Bank[]>([]);
   const [selectedBank, setSelectedBank] = useState<Bank | null>(null);
-  const [accountNumber, setAccountNumber] = useState<string>("");
-  const [accountName, setAccountName] = useState<string>("");
+  const [accountNumber, setAccountNumber] = useState<string>('');
+  const [accountName, setAccountName] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [showAccountName, setShowAccountName] = useState<boolean>(false);
-  const [errorMessage, setErrorMessage] = useState<string>("");
+  const [errorMessage, setErrorMessage] = useState<string>('');
 
   const [, setFormCompleted] = useState<boolean>(false);
-  const [amount, setAmount] = useState<string>("");
-  const [narration, setNarration] = useState<string>("");
+  const [amount, setAmount] = useState<string>('');
+  const [narration, setNarration] = useState<string>('');
   const [step, setStep] = useState<number>(1);
   const [isStep2DataValid, setIsStep2DataValid] = useState<boolean>(false);
   const [showSuccessModal, setShowSuccessModal] = useState<boolean>(false);
-  const [pin, setPin] = useState<string[]>(["", "", "", ""]);
+  const [pin, setPin] = useState<string[]>(['', '', '', '']);
   const [showReceiptModal, setShowReceiptModal] = useState<boolean>(false);
 
   const formatAmount = (value: string) => {
-    return Number(value).toLocaleString("en-NG", {
+    return Number(value).toLocaleString('en-NG', {
       // minimumFractionDigits: 2,
       // maximumFractionDigits: 2,
     });
@@ -38,12 +38,12 @@ const SendFundsModal: React.FC<SendFundsModalProps> = ({ isOpen, onClose }) => {
 
   const resetForm = () => {
     setSelectedBank(null);
-    setAccountNumber("");
-    setAccountName("");
-    setAmount("");
-    setNarration("");
+    setAccountNumber('');
+    setAccountName('');
+    setAmount('');
+    setNarration('');
     setShowAccountName(false);
-    setErrorMessage("");
+    setErrorMessage('');
     setFormCompleted(false);
     setStep(1);
   };
@@ -76,7 +76,7 @@ const SendFundsModal: React.FC<SendFundsModalProps> = ({ isOpen, onClose }) => {
   const showErrorWithTimer = (message: string) => {
     setErrorMessage(message);
     setTimeout(() => {
-      setErrorMessage("");
+      setErrorMessage('');
     }, 2000);
   };
 
@@ -95,7 +95,7 @@ const SendFundsModal: React.FC<SendFundsModalProps> = ({ isOpen, onClose }) => {
 
   const handleSubmit = async () => {
     if (!selectedBank || !accountNumber) {
-      showErrorWithTimer("Please select a bank and enter an account number.");
+      showErrorWithTimer('Please select a bank and enter an account number.');
       return;
     }
 
@@ -105,12 +105,12 @@ const SendFundsModal: React.FC<SendFundsModalProps> = ({ isOpen, onClose }) => {
     const postData = {
       bank: selectedBank.code,
       account: accountNumber,
-      currency: "NGN",
+      currency: 'NGN',
     };
     console.log(postData);
 
-    if (postData.bank === "033" && postData.account === "0000000000") {
-      setAccountName("Test Account");
+    if (postData.bank === '033' && postData.account === '0000000000') {
+      setAccountName('Test Account');
       setShowAccountName(true);
       setStep(2);
       setIsLoading(false);
@@ -134,24 +134,24 @@ const SendFundsModal: React.FC<SendFundsModalProps> = ({ isOpen, onClose }) => {
         setStep(2);
       } else {
         showErrorWithTimer(
-          "Account name not found. Please check the details and try again."
+          'Account name not found. Please check the details and try again.'
         );
       }
     } catch (error) {
       if (axios.isAxiosError(error) && error.response) {
         if (error.response.status === 400) {
           showErrorWithTimer(
-            "Invalid account details. Please check and try again."
+            'Invalid account details. Please check and try again.'
           );
         } else if (error.response.status === 404) {
           showErrorWithTimer(
-            "Account not found. Please verify the account number."
+            'Account not found. Please verify the account number.'
           );
         } else {
-          showErrorWithTimer("An error occurred. Please try again later.");
+          showErrorWithTimer('An error occurred. Please try again later.');
         }
       } else {
-        showErrorWithTimer("An unexpected error occurred. Please try again.");
+        showErrorWithTimer('An unexpected error occurred. Please try again.');
       }
     } finally {
       setIsLoading(false);
@@ -159,7 +159,7 @@ const SendFundsModal: React.FC<SendFundsModalProps> = ({ isOpen, onClose }) => {
   };
 
   const handleConfirm = async () => {
-    console.log("Send Funds Details: ", {
+    console.log('Send Funds Details: ', {
       accountNumber,
       bankName: selectedBank?.name,
       accountName,
@@ -168,23 +168,23 @@ const SendFundsModal: React.FC<SendFundsModalProps> = ({ isOpen, onClose }) => {
       pin,
     });
 
-    const url = "https://api.korapay.com/merchant/api/v1/transactions/disburse";
+    const url = 'https://api.korapay.com/merchant/api/v1/transactions/disburse';
 
     const uniqueReference = `txn-${Date.now()}`;
     const data = {
       reference: uniqueReference,
       destination: {
-        type: "bank_account",
+        type: 'bank_account',
         amount: amount,
-        currency: "NGN",
+        currency: 'NGN',
         narration: narration,
         bank_account: {
           bank: selectedBank?.code,
           account: accountNumber,
         },
         customer: {
-          name: "Test Account",
-          email: "test@gmail.com",
+          name: 'Test Account',
+          email: 'test@gmail.com',
         },
       },
     };
@@ -192,23 +192,23 @@ const SendFundsModal: React.FC<SendFundsModalProps> = ({ isOpen, onClose }) => {
     const config = {
       headers: {
         Authorization:
-          "Bearer sk_test_CMZB7dakKNFb2AqeX3fXFQJcXKgLTdGPSMjAq3iq",
-        "Content-Type": "application/json",
+          'Bearer sk_test_CMZB7dakKNFb2AqeX3fXFQJcXKgLTdGPSMjAq3iq',
+        'Content-Type': 'application/json',
       },
     };
 
     try {
       const response = await axios.post(url, data, config);
-      console.log("Response:", response.data);
+      console.log('Response:', response.data);
       console.log(response.data.bank_code);
     } catch (error) {
       if (axios.isAxiosError(error)) {
         console.error(
-          "Error:",
+          'Error:',
           error.response ? error.response.data : error.message
         );
       } else {
-        console.error("Unexpected Error:", error);
+        console.error('Unexpected Error:', error);
       }
     }
 
@@ -290,11 +290,11 @@ const SendFundsModal: React.FC<SendFundsModalProps> = ({ isOpen, onClose }) => {
               type="button"
               onClick={handleSubmit}
               className={`w-full bg-gradient-to-t from-[#020202] to-[#0E1D33] text-white py-3 rounded-lg font-semibold ${
-                isLoading ? "cursor-wait" : "cursor-pointer"
+                isLoading ? 'cursor-wait' : 'cursor-pointer'
               }`}
               disabled={isLoading}
             >
-              {isLoading ? "Loading..." : "Next"}
+              {isLoading ? 'Loading...' : 'Next'}
             </button>
           </form>
         )}
@@ -302,7 +302,7 @@ const SendFundsModal: React.FC<SendFundsModalProps> = ({ isOpen, onClose }) => {
         {step === 2 && (
           <>
             <SendFunds2
-              bankName={selectedBank?.name || ""}
+              bankName={selectedBank?.name || ''}
               accountNumber={accountNumber}
               accountName={accountName}
               onDataChange={handleStep2DataChange}
@@ -315,7 +315,11 @@ const SendFundsModal: React.FC<SendFundsModalProps> = ({ isOpen, onClose }) => {
                 Back
               </button>
               <button
-                className={`w-full bg-gradient-to-t from-[#020202] to-[#0E1D33] text-white py-3 rounded-lg font-semibold ${isStep2DataValid ? 'cursor-pointer' : 'cursor-not-allowed bg-gradient-to-t from-gray-400 to-gray-500'}`}
+                className={`w-full bg-gradient-to-t from-[#020202] to-[#0E1D33] text-white py-3 rounded-lg font-semibold ${
+                  isStep2DataValid
+                    ? 'cursor-pointer'
+                    : 'cursor-not-allowed bg-gradient-to-t from-gray-400 to-gray-500'
+                }`}
                 onClick={handleContinueToStep3}
                 disabled={!isStep2DataValid}
               >
@@ -328,14 +332,14 @@ const SendFundsModal: React.FC<SendFundsModalProps> = ({ isOpen, onClose }) => {
         {step === 3 && (
           <>
             <SendFunds3
-              bankName={selectedBank?.name || ""}
+              bankName={selectedBank?.name || ''}
               accountNumber={accountNumber}
               accountName={accountName}
               amount={amount}
               narration={narration}
               setPin={setPin}
               onPinEnter={function (_pin: string): void {
-                throw new Error("Function not implemented.");
+                throw new Error('Function not implemented.');
               }}
             />
             <div className="mt-4 flex items-center gap-4">
@@ -373,7 +377,7 @@ const SendFundsModal: React.FC<SendFundsModalProps> = ({ isOpen, onClose }) => {
                 Transfer Successful
               </h3>
               <p className="text-center text-base font-medium mb-10">
-                You’ve successfully transferred ₦{formatAmount(amount)} to{" "}
+                You’ve successfully transferred ₦{formatAmount(amount)} to{' '}
                 {accountName} - {selectedBank?.name}
               </p>
               <button
@@ -391,7 +395,7 @@ const SendFundsModal: React.FC<SendFundsModalProps> = ({ isOpen, onClose }) => {
             onClose={handleCloseReceiptModal}
             amount={amount}
             accountName={accountName}
-            bankName={selectedBank?.name || ""}
+            bankName={selectedBank?.name || ''}
           />
         )}
       </div>

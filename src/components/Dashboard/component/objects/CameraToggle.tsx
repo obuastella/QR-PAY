@@ -14,6 +14,7 @@ const CameraToggle = forwardRef<{ stopCamera: () => void }, CameraToggleProps>(
   ({ isModalOpen, onQrCodeResult }, ref) => {
     const [parsedData, setParsedData] = useState<{ accountNumber: string; name: string } | null>(null);
     const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
+    const [errorMessage, setErrorMessage] = useState<string | null>(null); 
     const videoRef = useRef<HTMLVideoElement>(null);
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const streamRef = useRef<MediaStream | null>(null);
@@ -46,7 +47,10 @@ const CameraToggle = forwardRef<{ stopCamera: () => void }, CameraToggleProps>(
         intervalRef.current = window.setInterval(scanQrCode, 100);
       } catch (err) {
         console.error('Error accessing the camera: ', err);
-        alert('Permission denied or camera not available.');
+        setErrorMessage('Permission denied or camera not available.');
+        setTimeout(() => {
+          setErrorMessage(null); 
+        }, 5000);
       }
     };
 
@@ -78,6 +82,10 @@ const CameraToggle = forwardRef<{ stopCamera: () => void }, CameraToggleProps>(
             }
           } catch (error) {
             console.error('Failed to parse QR code data:', error);
+            setErrorMessage('Invalid QR-Pay qr-code. Please try again.');
+            setTimeout(() => {
+              setErrorMessage(null); 
+            }, 5000);
           }
         }
       }
@@ -138,6 +146,12 @@ const CameraToggle = forwardRef<{ stopCamera: () => void }, CameraToggleProps>(
         </div>
 
         <canvas ref={canvasRef} style={{ display: 'none' }} />
+
+        {errorMessage && (
+          <div className="mt-4 p-2 bg-red-100 border border-red-400 text-red-700 rounded-lg text-sm">
+            {errorMessage}
+          </div>
+        )}
 
         {isModalVisible && parsedData && (
           <QrCodePaymentModal

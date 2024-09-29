@@ -303,12 +303,12 @@ function QrCodePaymentModal({
               You’ve successfully transferred ₦{formatAmount(amount)} to {name}{" "}
               - {bankName}
             </p>
-            <button
+            {/* <button
               onClick={() => setShowReceiptModal(true)} // Show receipt modal here
               className="w-full bg-gradient-to-t from-[#020202] to-[#0E1D33] text-white py-2 rounded-lg"
             >
               View Receipt
-            </button>
+            </button> */}
           </div>
         </div>
       )}
